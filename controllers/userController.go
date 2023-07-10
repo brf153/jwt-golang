@@ -35,7 +35,25 @@ func SignUp()gin.HandlerFunc{
 		}
 		validationErr := validate.Struct(user)
 		if validationErr != nil{
-			c.JSON(http.StatusBadRequest, )
+			c.JSON(http.StatusBadRequest, gin.H{"email":validationErr.Error()})
+			return
+		}
+		
+		count, err := userCollection.CountDocuments(ctx, bson.M{"email":user.Email})
+		defer cancel()
+		if err!= nil{
+			log.Panic(err)
+			c.JSON(http.StatusInternalServerError, gin.H{"error":"error occured while checking for the email"})
+		}
+		count, err = userCollection.CountDocuments(ctx, bson.M{"phone":user.Phone})
+		defer cancel()
+		if err!= nil{
+			log.Panic(err)
+			c.JSON(http.StatusInternalServerError, gin.H{"error":"error occured while checking for the phone"})
+		}
+
+		if count>0{
+			c.JSON(http.StatusInternalServerError, gin.H{"error":"this email or phone already exists"})
 		}
 	}
 }
@@ -48,7 +66,7 @@ func GetUser() gin.HandlerFunc{
 	return func(c *gin.Context){
 		userId := c.Param("user_id")
 		if err:= helper.MatchUserTypeToUid(c , userId); err != nil{
-			c.JSON(http.StatusBadRequest, gin.H("error":err.Error()))
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return 
 		}
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
@@ -57,7 +75,7 @@ func GetUser() gin.HandlerFunc{
 		err := userCollection.FindOne(ctx, bson.M{"user_id":userId}).Decode(&user)
 		defer cancel()
 		if err!= nil{
-			c.JSON(http.StatusInternalServerError, gin.M{"error": err.Error()})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
 		c.JSON(http.StatusOK, user)
