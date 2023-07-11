@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/brf153/jwt-golang.git/database"
-	"github.com/brf153/jwt-golang/database"
+	"github.com/brf153/jwt-golang.git/database"
 	jwt "github.com/dgrijalva/jwt-go"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

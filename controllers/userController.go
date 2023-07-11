@@ -10,8 +10,8 @@ import (
 
 	"github.com/brf153/jwt-golang.git/database"
 	"github.com/brf153/jwt-golang.git/models"
-	helper "github.com/brf153/jwt-golang/helpers"
-	"github.com/brf153/jwt-golang/models"
+	helper "github.com/brf153/jwt-golang.git/helpers"
+	"github.com/brf153/jwt-golang.git/models"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -76,7 +76,11 @@ func SignUp()gin.HandlerFunc{
 	}
 }
 
-func Login()
+func Login() gin.HandlerFunc{
+	return func(c *gin.Context){
+		context.WithTimeout(context.Background())
+	}
+}
 
 func GetUsers()
 
