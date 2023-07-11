@@ -11,8 +11,6 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
 1. Clone the repo
    ```sh
    git clone https://github.com/brf153/jwt-golang
@@ -21,9 +19,6 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    go mod vendor
    ```
-   
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -38,14 +33,10 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTACT -->
 ## Contact
 
 Twitter Handle - [@ThisisBhandari](https://twitter.com/ThisIsBhandari) 
 
 Project Link: https://github.com/brf153/jwt-golang
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
